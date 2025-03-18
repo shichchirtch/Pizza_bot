@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let pricePizzaElement = document.querySelector("#price");
         let basePrice = parseFloat(pricePizzaElement.getAttribute("data-price")); // Берём цену из HTML
         let quantity = 1;
-        const BASE_URL = "https://fe2d-2a00-20-5-96e1-a933-df32-3f83-7e19.ngrok-free.app";
+        const BASE_URL = "https://fourpizzabot.com";
 
         decreaseBtn.addEventListener("click", function () {
             if (quantity > 1) {

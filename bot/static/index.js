@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("✅ Telegram WebApp API подключен");
         const initData = Telegram.WebApp.initDataUnsafe;
         console.log("📦 Данные от Telegram:", initData);
-        const HOST_PATH='https://fe2d-2a00-20-5-96e1-a933-df32-3f83-7e19.ngrok-free.app'
+        const HOST_PATH='https://fourpizzabot.com'
         fetch(`${HOST_PATH}/receive_telegram_data`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },

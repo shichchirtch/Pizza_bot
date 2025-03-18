@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const orderForm = document.getElementById("orderForm");
     const resetOrder = document.getElementById("resetOrder");
-    const HOST_PATH = "https://f777-2a00-20-5-96e1-b54a-9741-728d-21ea.ngrok-free.app";
+    const HOST_PATH = "https://fourpizzabot.com";
 
     if (!orderForm || !resetOrder) {
         console.error("Ошибка: Не найден один из элементов формы заказа!");
