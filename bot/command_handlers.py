@@ -2,7 +2,7 @@ from aiogram import Router, html
 import asyncio
 from aiogram.enums import ParseMode
 from aiogram.types import Message
-from aiogram.filters import CommandStart, Command
+from aiogram.filters import CommandStart, Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from lexicon import *
 from python_db import users_db
@@ -56,7 +56,9 @@ async def help_command(message: Message):
     user_id = message.from_user.id
     temp_data = users_db[user_id]['bot_answer']
     if temp_data:
-        await temp_data.delete()
+        with suppress(TelegramBadRequest):
+            await temp_data.delete()
+            users_db[user_id]['bot_ans'] = ''
     att = await message.answer(help_answer)
     users_db[user_id]['bot_answer'] = att
     await asyncio.sleep(2)
