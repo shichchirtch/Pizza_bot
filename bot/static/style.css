@@ -1,0 +1,72 @@
+body {
+    overflow-x: hidden; /* Отключаем горизонтальный скролл */
+    width: 100%;
+    background-color: #ac30bf;
+    color: #fbe5fe;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 50px; /* Достаточно места под футером */
+}
+
+header {
+    background-color: #70049f;
+    color: white;
+    text-align: center;
+    padding: 2px;  /* Уменьшаем отступ сверху и снизу */
+    font-size: 25px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-shadow: 4px 4px 8px goldenrod;
+    margin-bottom: 0; /* Уменьшаем промежуток между хедером и контентом */
+    line-height: 0.8;
+    width: 100%;
+}
+
+
+footer {
+    background-color: #9370DB;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    line-height: 1.2;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+img {
+    width: 280px; /* Фиксированная ширина */
+    height: 190px; /* Фиксированная высота */
+    object-fit: cover; /* Обрезка по размеру, без искажений */
+    border-radius: 10px;
+    margin: 5px;
+}
+
+a {
+    color: #fbe5fe;
+    font-size: 18px;
+    /*text-decoration: none;*/
+    /*font-weight: bold;*/
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+button {
+    font-size: 20px;
+    padding: 12px 20px; /* Чуть компактнее */
+    border-radius: 15px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+
+.menu_style {
+    font-family: 'Comic Sans MS', cursive, sans-serif !important;
+    font-size: 28px; /* Немного увеличим размер */
+    color: blue;
+    text-shadow: 2px 2px 4px black;
+}

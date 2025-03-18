@@ -1,0 +1,42 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script src="/static/index.js" defer></script>
+
+    <title class="menu_style">Меню</title>
+</head>
+<body>
+    <header>
+        <h1>Four Pizzas Bot</h1>
+    </header>
+
+
+    <main>
+        <h2>Меню</h2>
+        <div class="pizza-list">
+
+            {% for pizza in pizzas %}
+
+                <a href="{{ url_for('pizza_detail', pizza_id=pizza.id) }}">
+
+
+                    <img src="/static/{{ pizza.image }}" alt="{{ pizza.name }}">
+
+                    <p>{{ pizza.name }}</p>
+                </a>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <a href="https://t.me/smart_bot_empire" target="_blank">Produced by Smart Bot Empire</a>
+    </footer>
+</body>
+</html>
+

@@ -1,0 +1,106 @@
+/* Устанавливаем розовый фон для страницы пиццы */
+body.pizza-page {
+    overflow-x: hidden; /* Отключаем горизонтальный скролл */
+    width: 100%;
+    background-color: hotpink;
+    color: #fbe5fe;
+    font-family: Arial, sans-serif;
+    /*font-family: 'Comic Sans MS', cursive, sans-serif;*/
+    text-align: center;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 50px; /* Достаточно места под футером */
+}
+
+/* Увеличиваем размер изображения пиццы */
+img {
+    height: auto;
+    width: 95%; /* Сделаем уже */
+    max-width: 360px; /* Ограничим ширину */
+    border-radius: 10px;
+}
+
+/* Стили для кнопок */
+button {
+    font-size: 14px;
+    padding: 15px 25px;
+    border-radius: 15px;
+    border: none;
+    cursor: pointer;
+    max-width: 150px;
+    font-weight: bold;
+    color: blue;
+}
+
+/* Кнопки увеличения и уменьшения количества */
+.quantity button {
+    font-size: 18px;
+    padding: 10px 15px;
+    margin: 25px;
+}
+
+/* Ссылка "Вернуться в меню" */
+a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header {
+    background-color: #c60d88;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 25px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-shadow: 2px 2px 5px orange;
+    width: 100%;
+    margin-top: 0;
+    line-height:0;
+}
+
+
+footer {
+    background-color: #9370DB;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    line-height:0;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.pizza-description {
+    font-family: 'Comic Sans MS', cursive, sans-serif !important;
+    font-size: 20px;
+    color: #ffddff; /* Светлый цвет для контраста */
+    text-shadow: 1px 1px 3px black;
+    max-width: 80%;
+    margin: auto;
+    line-height: 1.4;
+}
+
+.pizza-title {
+    font-family: 'Comic Sans MS', cursive, sans-serif !important;
+    font-size: 28px; /* Немного увеличим размер */
+    color: white;
+    text-shadow: 2px 2px 4px black;
+}
+
+.pr_desc{
+    margin: 5px;
+    color: #fbe5fe;
+    font-size: 28px;
+}
+
+.quantity{
+    /*margin: 50px;*/
+    padding: 5px;
+}

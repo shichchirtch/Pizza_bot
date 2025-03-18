@@ -1,0 +1,62 @@
+body {
+    background-color: #a8f66b; /* Салатовый фон */
+    color: #343f2c;
+    font-size: larger; /* Увеличенный шрифт */
+    text-align: center;
+    margin: 0;
+    padding-bottom: 40px; /* Достаточно места под футером */
+    font-family: 'Comic Sans MS', cursive, sans-serif !important;
+
+}
+
+
+.container {
+    max-width: 400px;
+    margin: auto;
+    font-weight: bold;
+    font-size: larger;
+}
+
+input, select, button {
+    display: block;
+    width: 90%; /* Сделаем уже */
+    max-width: 300px; /* Ограничим ширину */
+    margin: 10px auto; /* Центрируем */
+    padding: 8px;
+    font-size: larger;
+}
+
+/* Увеличенный и жирный шрифт для подписей к полям ввода */
+label {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+header {
+    background-color: #853cb4;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-shadow: 2px 2px 5px orange;
+    margin-top: 0;
+    line-height:0;
+
+}
+
+footer {
+    background-color: #9370DB;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    line-height:0;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+}

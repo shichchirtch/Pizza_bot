@@ -1,0 +1,51 @@
+<!-- pizza.html -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ pizza.name }}</title>
+
+    <!-- Подключаем отдельный CSS для страницы пиццы -->
+
+    <link rel="stylesheet" href="/static/pizza.css">
+    <script src="/static/script.js" defer></script>
+
+</head>
+
+<body class="pizza-page">
+ <header>
+        <h1>Four Pizzas Bot</h1>
+    </header>
+
+    <main>
+    <h1 class="pizza-title">{{ pizza.name }}</h1>
+
+    <img src="/static/{{ pizza.image }}" alt="{{ pizza.name }}">
+
+
+
+    <p class="pizza-description">{{ pizza.description }}</p>
+    <div class="pr_desc">
+    <span  id="price" data-price="{{ pizza.price }}">{{ pizza.price }} €</span>
+    </div>
+    <div class="quantity">
+        <button id="decrease">-</button>
+        <span id="quantity">1</span>
+        <button id="increase">+</button>
+    </div>
+
+    <button id="add-to-cart" data-pizza-id="{{ pizza.id }}"
+                             data-name="{{ pizza.name }}"
+                             data-price="{{ pizza.price }}"
+    >Добавить в корзину</button>
+    <a href="{{ url_for('index') }}">Вернуться в меню</a>
+
+    <script src="{{ url_for('static', path='script.js') }}"></script>
+         </main>
+<footer>
+        <a href="https://t.me/smart_bot_empire" target="_blank">Produced by Smart Bot Empire</a>
+    </footer>
+</body>
+</html>
+

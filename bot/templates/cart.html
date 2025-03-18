@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+
+    <!-- Подключаем внешний файл стилей -->
+    <link rel="stylesheet" href="/static/cart.css">
+</head>
+<body>
+<header>
+        <h1>Four Pizzas Bot</h1>
+    </header>
+
+    <main>
+    <div class="container">
+        <h1>Корзина</h1>
+
+        <!-- Кнопка для возврата на главную страницу (чтобы выбрать ещё пиццу) -->
+        <button onclick="window.location.href='/'">Выбрать ещё пиццу</button>
+
+        <!-- Список товаров в корзине -->
+        <ul id="cartItems">
+            {% for item in cart %}
+                <li>{{ item.name }} - {{ item.quantity }} шт.</li> <!-- Название пиццы и количество -->
+
+                <span>{{item.price}} €</span> <!-- Подсчёт стоимости для каждой позиции -->
+            {% endfor %}
+        </ul>
+
+        <!-- Отображение итоговой суммы заказа -->
+        <h2>Итого: <span id="totalPrice">{{ total_price }} €</span></h2>
+
+        <!-- Форма оформления заказа -->
+        <form id="orderForm">
+            <label for="address"><b>Адрес доставки:</b></label>
+            <input type="text" id="address" name="address" required> <!-- Ввод адреса -->
+
+            <label for="phone"><b>Телефон:</b></label>
+            <input type="text" id="phone" name="phone" required> <!-- Ввод телефона -->
+
+            <label for="payment"><b>Способ оплаты:</b></label>
+            <select id="payment" name="payment">
+                <option value="paypal">PayPal</option>
+                <option value="cash">Наличные</option>
+            </select> <!-- Выбор способа оплаты -->
+
+            <button type="submit">Оформить заказ</button> <!-- Кнопка для отправки заказа -->
+        </form>
+
+        <!-- Ссылка для возврата в меню с очисткой корзины -->
+        <a href="/" id="resetOrder">Вернуться в меню</a>
+    </div>
+
+    <!-- Подключение внешнего JavaScript-файла -->
+        <script src="/static/cart.js" defer></script>
+             </main>
+<footer>
+        <a href="https://t.me/smart_bot_empire" target="_blank">Produced by Smart Bot Empire</a>
+    </footer>
+</body>
+
+

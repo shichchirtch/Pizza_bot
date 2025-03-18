@@ -1,0 +1,59 @@
+services:
+  bot:
+    build: .
+    restart: always
+    ports:
+      - "8000:8000"
+    env_file:
+      - env/main.env
+    volumes:
+      - ./bot:/bot
+    depends_on:
+      - postgres1503
+      - redis1503
+
+  nginx:
+    image: nginx:1.23
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./env/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./bot/static:/var/www/app/static  # Пробрасываем статику
+      - ./certbot/conf:/etc/letsencrypt  # Пробрасываем SSL сертификаты
+      - ./certbot/www:/var/www/certbot  # Пробрасываем папку для Let's Encrypt
+    depends_on:
+      - bot
+
+  postgres1503:
+    image: postgres:16.2
+    env_file:
+      - env/postgres.env
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis1503:
+    image: redis:5.0.5
+    command: redis-server --appendonly yes
+    restart: always
+    volumes:
+      - redis_data:/data
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/letsencrypt
+    depends_on:
+      - nginx
+
+volumes:
+  postgres_data:
+  redis_data:
+
+
+
+
+
