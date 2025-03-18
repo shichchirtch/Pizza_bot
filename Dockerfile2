@@ -1,15 +1,10 @@
 FROM certbot/certbot
 
-# Обновляем пакеты и устанавливаем необходимые зависимости
-RUN apt-get update && apt-get install -y \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
 # Указываем рабочую директорию
 WORKDIR /etc/letsencrypt
 
-# Создаем точку монтирования для сертификатов
+# Создаем точки монтирования для сертификатов
 VOLUME ["/etc/letsencrypt", "/var/www/certbot"]
 
-# Запускаем Certbot для получения сертификатов
+# Указываем точку входа
 ENTRYPOINT ["certbot"]
