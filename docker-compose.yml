@@ -42,7 +42,7 @@ services:
       - redis_data:/data
 
   certbot:
-    image: certbot/certbot
+    image: certbot/certbot-nginx
     volumes:
       - ./certbot/www:/var/www/certbot
       - ./certbot/conf:/etc/letsencrypt
