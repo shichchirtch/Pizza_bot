@@ -93,21 +93,6 @@ async def send_message(message: Message, state: FSMContext):
     await message.answer(admin_eintritt)
     await state.set_state(FSM_ST.admin)
 
-@ch_router.message(StateFilter(FSM_ST.admin))
-async def send_message(message: Message, state: FSMContext):
-    spisok_id = await return_tg_id()
-    print('\n\n*******', spisok_id)
-    counter = 0
-    for chat_id in spisok_id:
-        spam = message.text
-        try:
-            await message.bot.send_message(chat_id=chat_id[0], text=spam)
-            counter += 1
-        except TelegramForbiddenError:
-            pass
-        await asyncio.sleep(0.2)
-    await state.set_state(FSM_ST.after_start)
-    await message.answer(f'Mailing is done)))\n\nTotal mailing count: <b>{counter}</b>\n\n🔥')
 
 
 @ch_router.message(Command('dump'), IS_ADMIN())
@@ -127,6 +112,23 @@ async def load_db(message: Message, state: FSMContext):
         await dp.storage.set_data(key=bot_storage_key, data=recover_base)  # Обновляю словарь бота
 
     await message.answer('Базы данных успешно загружены !')
+
+
+@ch_router.message(StateFilter(FSM_ST.admin))
+async def send_message(message: Message, state: FSMContext):
+    spisok_id = await return_tg_id()
+    print('\n\n*******', spisok_id)
+    counter = 0
+    for chat_id in spisok_id:
+        spam = message.text
+        try:
+            await message.bot.send_message(chat_id=chat_id[0], text=spam)
+            counter += 1
+        except TelegramForbiddenError:
+            pass
+        await asyncio.sleep(0.2)
+    await state.set_state(FSM_ST.after_start)
+    await message.answer(f'Mailing is done)))\n\nTotal mailing count: <b>{counter}</b>\n\n🔥')
 
 
 @ch_router.message()
