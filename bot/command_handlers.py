@@ -100,7 +100,7 @@ async def send_message(message: Message, state: FSMContext):
     for chat_id in bot_dict.keys():
         spam = message.text
         try:
-            await message.bot.send_message(chat_id=chat_id, text=spam)
+            await message.bot.send_message(chat_id=int(chat_id), text=spam)
             counter += 1
         except TelegramForbiddenError:
             pass
