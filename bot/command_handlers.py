@@ -45,10 +45,12 @@ async def process_start_command(message: Message, state: FSMContext):
         print('start else works')
         await insert_new_user_in_table(user_id, user_name)
         server_cart[user_id] = []
-        att = await message.answer(text='Bot was restated on server')
+        insgesamt = await get_user_count()
+        await message.answer(text=f'Bot was restated on server\n\n'
+                                        f'Total users: <b>{insgesamt}</b>\n\n🔥')
         await message.delete()
-        await asyncio.sleep(2.5)
-        await att.delete()
+
+
 
 
 @ch_router.message(Command('help'))
@@ -93,15 +95,17 @@ async def send_message(message: Message, state: FSMContext):
 @ch_router.message(StateFilter(FSM_ST.admin))
 async def send_message(message: Message, state: FSMContext):
     bot_dict = await dp.storage.get_data(key=bot_storage_key)
+    counter = 0
     for chat_id in bot_dict.keys():
         spam = message.text
         try:
             await message.bot.send_message(chat_id=chat_id, text=spam)
+            counter += 1
         except TelegramForbiddenError:
             pass
         await asyncio.sleep(0.2)
     await state.set_state(FSM_ST.after_start)
-    await message.answer('Mailing is done)))')
+    await message.answer(f'Mailing is done)))\n\nTotal mailing count: <b>{counter}</b>\n\n🔥')
 
 @ch_router.message()
 async def trasher(message: Message):
