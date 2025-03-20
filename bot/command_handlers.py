@@ -7,7 +7,7 @@ from aiogram.fsm.context import FSMContext
 from lexicon import *
 from python_db import users_db
 from postgress_functions import (check_user_in_table, insert_new_user_in_table,
-                            get_user_count,  return_orders)
+                            get_user_count,  return_orders, return_tg_id)
 from bot_instance import FSM_ST, dp, bot_storage_key, server_cart
 from keyboards import show_my_orders_kb
 from filters import SHOW_BUTTON, IS_ADMIN
@@ -94,17 +94,17 @@ async def send_message(message: Message, state: FSMContext):
 
 @ch_router.message(StateFilter(FSM_ST.admin))
 async def send_message(message: Message, state: FSMContext):
-    bot_dict = await dp.storage.get_data(key=bot_storage_key)
-    print('\n\n\nbot_dict\n\n\n', bot_dict)
+    spisok_id = await return_tg_id()
+    print('\n\n*******', spisok_id)
     counter = 0
-    for chat_id in bot_dict.keys():
-        spam = message.text
-        try:
-            await message.bot.send_message(chat_id=int(chat_id), text=spam)
-            counter += 1
-        except TelegramForbiddenError:
-            pass
-        await asyncio.sleep(0.2)
+    # for chat_id in spisok_id:
+    #     spam = message.text
+    #     try:
+    #         await message.bot.send_message(chat_id=chat_id[0], text=spam)
+    #         counter += 1
+    #     except TelegramForbiddenError:
+    #         pass
+    #     await asyncio.sleep(0.2)
     await state.set_state(FSM_ST.after_start)
     await message.answer(f'Mailing is done)))\n\nTotal mailing count: <b>{counter}</b>\n\n🔥')
 

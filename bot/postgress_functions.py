@@ -58,3 +58,10 @@ async def get_user_count():
         result = await session.execute(select(func.count(User.index)))
         count = result.scalar()
         return count
+
+async def return_tg_id():
+    async with session_marker() as session:
+
+        tg_ids = session.query(User.tg_us_id).all()
+        print('tg_ids: ', tg_ids)
+        return tg_ids
