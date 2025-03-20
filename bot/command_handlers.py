@@ -95,6 +95,7 @@ async def send_message(message: Message, state: FSMContext):
 @ch_router.message(StateFilter(FSM_ST.admin))
 async def send_message(message: Message, state: FSMContext):
     bot_dict = await dp.storage.get_data(key=bot_storage_key)
+    print('\n\n\nbot_dict\n\n\n', bot_dict)
     counter = 0
     for chat_id in bot_dict.keys():
         spam = message.text
