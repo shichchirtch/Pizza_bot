@@ -61,7 +61,7 @@ async def get_user_count():
 
 async def return_tg_id():
     async with session_marker() as session:
-
-        tg_ids = session.query(User.tg_us_id).all()
-        print('tg_ids: ', tg_ids)
-        return tg_ids
+        query = await session.execute(select(User.tg_us_id))
+        needed_data = query.all()
+        print('tg_ids: ', needed_data)
+        return needed_data
