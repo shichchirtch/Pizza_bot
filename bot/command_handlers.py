@@ -91,8 +91,13 @@ async def about_project_command(message: Message):
 async def send_message(message: Message, state: FSMContext):
 
     await message.answer(admin_eintritt)
-    await state.set_state(FSM_ST.admin)
 
+
+
+@ch_router.message(Command('send_msg'), IS_ADMIN())
+async def send_message(message: Message, state: FSMContext):
+    await state.set_state(FSM_ST.admin)
+    await message.answer('Schreib ihre Nachrichten')
 
 
 @ch_router.message(Command('dump'), IS_ADMIN())
