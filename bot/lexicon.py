@@ -10,3 +10,10 @@ about_project = ('<b>Web App</b> technology is a very modern and advanced App in
                  'Telegram WebApp for divers Purposes, please contact me personally @shichchirtch ,'
                  ' I can create such App for you with every Language Interface with ❤️'
                  )
+
+
+
+admin_eintritt =('отправить им сообщуху   /send_msg\n\n'
+                 'Cохранить бдюху     /dump\n\n'
+                 'Загрузить БЭДюху    /load\n\n'
+                 '🤗')

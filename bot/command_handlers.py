@@ -14,6 +14,7 @@ from filters import SHOW_BUTTON, IS_ADMIN
 from aiogram.exceptions import TelegramForbiddenError
 from aiogram.exceptions import TelegramBadRequest
 from contextlib import suppress
+import json
 
 
 ch_router = Router()
@@ -28,7 +29,7 @@ async def process_start_command(message: Message, state: FSMContext):
         await state.set_state(FSM_ST.after_start)
         await insert_new_user_in_table(user_id, user_name)
         bot_dict = await dp.storage.get_data(key=bot_storage_key)  # Получаю словарь бота
-        bot_dict[message.from_user.id] = {'name':user_name, 'order':{}}  # Создаю пустой словарь для заметок юзера
+        bot_dict[str(user_id)] = {'name':user_name, 'order':{}}  # Создаю пустой словарь для заметок юзера
 
         await dp.storage.update_data(key=bot_storage_key, data=bot_dict)  # Обновляю словарь бота
 
@@ -88,9 +89,9 @@ async def about_project_command(message: Message):
 
 @ch_router.message(Command('admin'), IS_ADMIN())
 async def send_message(message: Message, state: FSMContext):
-    await state.set_state(FSM_ST.admin)
-    await message.answer('В следующем сообщении отправляй рассылку')
 
+    await message.answer(admin_eintritt)
+    await state.set_state(FSM_ST.admin)
 
 @ch_router.message(StateFilter(FSM_ST.admin))
 async def send_message(message: Message, state: FSMContext):
@@ -107,6 +108,26 @@ async def send_message(message: Message, state: FSMContext):
         await asyncio.sleep(0.2)
     await state.set_state(FSM_ST.after_start)
     await message.answer(f'Mailing is done)))\n\nTotal mailing count: <b>{counter}</b>\n\n🔥')
+
+
+@ch_router.message(Command('dump'), IS_ADMIN())
+async def dump_db(message: Message, state: FSMContext):
+    bot_dict = await dp.storage.get_data(key=bot_storage_key)  # Получаю словарь бота
+    with open('save_db.json', 'w', encoding='utf-8') as file:
+        json.dump(bot_dict, file, ensure_ascii=False, indent=4)
+
+    await message.answer('Базы данных успешно записана !')
+
+
+
+@ch_router.message(Command('load'), IS_ADMIN())
+async def load_db(message: Message, state: FSMContext):
+    with open('save_db.json', 'r') as file:
+        recover_base = json.load(file)
+        await dp.storage.set_data(key=bot_storage_key, data=recover_base)  # Обновляю словарь бота
+
+    await message.answer('Базы данных успешно загружены !')
+
 
 @ch_router.message()
 async def trasher(message: Message):

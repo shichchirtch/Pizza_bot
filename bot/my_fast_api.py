@@ -87,7 +87,7 @@ async def cart_page(data: dict):
 
     bot_dict = await dp.storage.get_data(key=bot_storage_key)
     us_dict = bot_dict.get(str(user_id), {})
-    us_index = len(us_dict.get('order', {})) + 1
+    us_index = len(us_dict.setdefault('order', {})) + 1
     us_dict['order'][us_index] = order_user
     await dp.storage.update_data(key=bot_storage_key, data=bot_dict)
 
