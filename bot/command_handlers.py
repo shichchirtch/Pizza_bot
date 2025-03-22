@@ -52,8 +52,6 @@ async def process_start_command(message: Message, state: FSMContext):
         await message.delete()
 
 
-
-
 @ch_router.message(Command('help'))
 async def help_command(message: Message):
     user_id = message.from_user.id
@@ -71,11 +69,16 @@ async def help_command(message: Message):
 @ch_router.message(SHOW_BUTTON())
 async def show_my_orders_command(message: Message):
     user_id = message.from_user.id
-
     ans_msg = await return_orders(user_id)
-
     await message.answer(ans_msg)
+    await asyncio.sleep(2)
+    await message.delete()
 
+@ch_router.message(Command('my_orders'))
+async def show_my_orders_command_slash(message: Message):
+    user_id = message.from_user.id
+    ans_msg = await return_orders(user_id)
+    await message.answer(ans_msg)
     await asyncio.sleep(2)
     await message.delete()
 
@@ -107,7 +110,6 @@ async def dump_db(message: Message, state: FSMContext):
         json.dump(bot_dict, file, ensure_ascii=False, indent=4)
 
     await message.answer('Базы данных успешно записана !')
-
 
 
 @ch_router.message(Command('load'), IS_ADMIN())
