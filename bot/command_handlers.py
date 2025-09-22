@@ -54,7 +54,7 @@ async def process_start_command(message: Message, state: FSMContext):
 
 @ch_router.message(Command('help'))
 async def help_command(message: Message):
-    user_id = message.from_user.id
+    user_id = str(message.from_user.id)
     temp_data = users_db[user_id]['bot_answer']
     if temp_data:
         with suppress(TelegramBadRequest):
@@ -121,7 +121,7 @@ async def load_db(message: Message, state: FSMContext):
         users_db.update(recover_base)
         print('\n\n\n\n\n\nuser db = ',  users_db)
     await message.answer('Базы данных успешно загружены !')
-    await message.answer(users_db)
+    # await message.answer(users_db)
 
 
 @ch_router.message(StateFilter(FSM_ST.admin))
