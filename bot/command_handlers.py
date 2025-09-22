@@ -59,7 +59,7 @@ async def help_command(message: Message):
     if temp_data:
         with suppress(TelegramBadRequest):
             await temp_data.delete()
-            users_db[user_id]['bot_ans'] = ''
+            users_db[user_id]['bot_answer'] = ''
     att = await message.answer(help_answer)
     # await message.answer(help_answer)
     users_db[user_id]['bot_answer'] = att
