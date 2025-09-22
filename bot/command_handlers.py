@@ -54,15 +54,15 @@ async def process_start_command(message: Message, state: FSMContext):
 
 @ch_router.message(Command('help'))
 async def help_command(message: Message):
-    # user_id = message.from_user.id
-    # temp_data = users_db[user_id]['bot_answer']
-    # if temp_data:
-    #     with suppress(TelegramBadRequest):
-    #         await temp_data.delete()
-    #         users_db[user_id]['bot_ans'] = ''
+    user_id = message.from_user.id
+    temp_data = users_db[user_id]['bot_answer']
+    if temp_data:
+        with suppress(TelegramBadRequest):
+            await temp_data.delete()
+            users_db[user_id]['bot_ans'] = ''
     att = await message.answer(help_answer)
-    await message.answer(help_answer)
-    # users_db[user_id]['bot_answer'] = att
+    # await message.answer(help_answer)
+    users_db[user_id]['bot_answer'] = att
     await asyncio.sleep(2)
     await message.delete()
 
@@ -118,7 +118,7 @@ async def load_db(message: Message, state: FSMContext):
     with open('save_db.json', 'r') as file:
         recover_base = json.load(file)
         await dp.storage.set_data(key=bot_storage_key, data=recover_base)  # Обновляю словарь бота
-
+        users_db.update(recover_base)
     await message.answer('Базы данных успешно загружены !')
 
 
