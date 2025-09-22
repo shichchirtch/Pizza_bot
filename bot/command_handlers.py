@@ -55,6 +55,7 @@ async def process_start_command(message: Message, state: FSMContext):
 @ch_router.message(Command('help'))
 async def help_command(message: Message):
     user_id = str(message.from_user.id)
+    users_db[user_id].setdefault('bot_answer', '') # Добавляю юзеру ключик в словарь
     temp_data = users_db[user_id]['bot_answer']
     if temp_data:
         with suppress(TelegramBadRequest):
