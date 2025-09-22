@@ -121,6 +121,7 @@ async def load_db(message: Message, state: FSMContext):
         users_db.update(recover_base)
         print('\n\n\n\n\n\nuser db = ',  users_db)
     await message.answer('Базы данных успешно загружены !')
+    await message.answer(users_db)
 
 
 @ch_router.message(StateFilter(FSM_ST.admin))
