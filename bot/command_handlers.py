@@ -119,6 +119,7 @@ async def load_db(message: Message, state: FSMContext):
         recover_base = json.load(file)
         await dp.storage.set_data(key=bot_storage_key, data=recover_base)  # Обновляю словарь бота
         users_db.update(recover_base)
+        print('\n\n\n\n\n\nuser db = ',  users_db)
     await message.answer('Базы данных успешно загружены !')
 
 
