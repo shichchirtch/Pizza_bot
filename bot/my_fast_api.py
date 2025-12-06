@@ -101,7 +101,7 @@ async def cart_page(data: dict):
 
 @f_api.post("/add-to-cart")
 async def add_to_cart(data: dict):
-
+    # print("\n\n\nКлючи server_cart:\n\n", server_cart.keys())
     pizza_id = data.get("pizza_id")
     quantity = data.get("quantity")
     pizza_price = data.get("price")
@@ -110,6 +110,8 @@ async def add_to_cart(data: dict):
     pizza = next((p for p in pizzas if p["id"] == int(pizza_id)), None)
     if not pizza:
         raise HTTPException(status_code=404, detail="Пицца не найдена")
+
+    server_cart.setdefault(user_id, [])  # Если корзина упала - создаю ее принудительно и записываю туда id
 
     existing_pizza = next((item for item in server_cart[user_id] if item["pizza_id"] == pizza_id), None)
     if existing_pizza:
